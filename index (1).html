@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinosan S.T — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12181B;
+    --ink-soft:#1B2327;
+    --parchment:#EDE6D6;
+    --parchment-dim:#DED4BC;
+    --teal:#5C8374;
+    --gold:#D4A24C;
+    --off-white:#F5F1E8;
+    --line: rgba(245,241,232,0.14);
+    --max-w: 1120px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--ink);
+    color:var(--off-white);
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em;}
+
+  .wrap{max-width:var(--max-w); margin:0 auto; padding:0 32px;}
+
+  ::selection{background:var(--gold); color:var(--ink);}
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(18,24,27,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--max-w); margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-size:1.15rem; font-weight:600;
+    letter-spacing:0.02em;
+  }
+  .brand span{color:var(--gold);}
+  nav ul{list-style:none; display:flex; gap:34px;}
+  nav a{
+    font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--off-white); opacity:0.75; transition:opacity 0.2s ease, color 0.2s ease;
+    position:relative; padding-bottom:4px;
+  }
+  nav a:hover{opacity:1; color:var(--gold);}
+  .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:8px;}
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
+    content:''; display:block; width:22px; height:2px; background:var(--off-white);
+    position:relative; transition:all .25s ease;
+  }
+  .nav-toggle span::before{position:absolute; top:-7px;}
+  .nav-toggle span::after{position:absolute; top:7px;}
+
+  @media (max-width: 760px){
+    nav ul{
+      position:fixed; top:64px; right:0; left:0;
+      flex-direction:column; gap:0;
+      background:var(--ink-soft);
+      border-bottom:1px solid var(--line);
+      transform:translateY(-150%);
+      transition:transform 0.3s ease;
+      padding:8px 32px 20px;
+    }
+    nav ul.open{transform:translateY(0);}
+    nav li{border-top:1px solid var(--line);}
+    nav a{display:block; padding:16px 0;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; align-items:center;
+    padding-top:110px; padding-bottom:60px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap:48px;
+    align-items:center;
+    width:100%;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:0.78rem; text-transform:uppercase; letter-spacing:0.16em;
+    color:var(--gold); margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:''; width:26px; height:1px; background:var(--gold);
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6.2vw, 4.6rem);
+    line-height:1.03;
+    color:var(--off-white);
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--teal);
+    -webkit-text-stroke: 0px;
+  }
+  .hero-role{
+    margin-top:20px;
+    font-size:1.05rem;
+    color:var(--parchment-dim);
+    max-width:480px;
+  }
+  .hero-cta{
+    margin-top:38px;
+    display:flex; gap:16px; flex-wrap:wrap;
+  }
+  .btn{
+    padding:14px 28px;
+    font-size:0.85rem; letter-spacing:0.04em; text-transform:uppercase;
+    border-radius:2px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .btn-solid{
+    background:var(--gold); color:var(--ink); font-weight:600;
+  }
+  .btn-solid:hover{ transform:translateY(-2px); background:#e3b262; }
+  .btn-outline{
+    border:1px solid var(--line); color:var(--off-white);
+  }
+  .btn-outline:hover{ border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
+
+  /* --- profile portrait with rotating seal --- */
+  .portrait-wrap{
+    position:relative;
+    width:min(360px, 80vw);
+    justify-self:center;
+    aspect-ratio:1/1;
+  }
+  .portrait-ring{
+    position:absolute; inset:0;
+    border-radius:50%;
+    animation: spin 32s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .portrait-frame{
+    position:absolute;
+    inset:22px;
+    border-radius:50%;
+    overflow:hidden;
+    background: linear-gradient(160deg, var(--teal), var(--ink-soft));
+    border:2px solid var(--gold);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .portrait-frame img{
+    width:100%; height:100%; object-fit:cover;
+    display:block;
+  }
+  /* Placeholder shown until a real photo is added */
+  .portrait-frame .placeholder-label{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; font-size:0.75rem; letter-spacing:0.05em;
+    color:var(--off-white); opacity:0.75; padding:20px;
+    background: linear-gradient(160deg, var(--teal), var(--ink-soft));
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding:110px 0; border-top:1px solid var(--line); }
+  .section-head{
+    display:flex; align-items:baseline; gap:18px; margin-bottom:56px;
+  }
+  .section-num{
+    font-family:'Fraunces', serif; font-style:italic; color:var(--gold);
+    font-size:1rem; opacity:0.8;
+  }
+  .section-head h2{ font-size:clamp(1.8rem, 3.4vw, 2.5rem); }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap:60px;
+  }
+  .about-text p{ color:var(--parchment-dim); margin-bottom:18px; max-width:540px; }
+  .about-text p:last-child{margin-bottom:0;}
+  .facts{ list-style:none; display:flex; flex-direction:column; gap:0; }
+  .facts li{
+    display:flex; justify-content:space-between; padding:16px 0;
+    border-bottom:1px solid var(--line); font-size:0.95rem;
+  }
+  .facts li span:first-child{ color:var(--parchment-dim); text-transform:uppercase; font-size:0.75rem; letter-spacing:0.08em;}
+  .facts li span:last-child{ font-family:'Fraunces', serif; }
+
+  /* ---------- WORK / PROJECTS ---------- */
+  .work-list{ display:flex; flex-direction:column; }
+  .work-item{
+    display:grid;
+    grid-template-columns: 90px 1fr auto;
+    align-items:center;
+    gap:28px;
+    padding:32px 0;
+    border-bottom:1px solid var(--line);
+    transition: background 0.25s ease, padding-left 0.25s ease;
+  }
+  .work-item:first-child{ border-top:1px solid var(--line); }
+  .work-item:hover{ background:rgba(212,162,76,0.05); padding-left:14px; }
+  .work-index{ font-family:'Fraunces', serif; font-style:italic; color:var(--gold); font-size:1.1rem; }
+  .work-body h3{ font-size:1.4rem; margin-bottom:8px; }
+  .work-body p{ color:var(--parchment-dim); font-size:0.95rem; max-width:520px; }
+  .work-tags{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+  .work-tags span{
+    font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--teal); border:1px solid var(--teal); padding:4px 10px; border-radius:20px;
+  }
+  .work-link{
+    justify-self:end; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--off-white); opacity:0.6; white-space:nowrap;
+    transition:opacity 0.2s ease, transform 0.2s ease;
+  }
+  .work-item:hover .work-link{ opacity:1; transform:translateX(4px); color:var(--gold); }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .skill-card{
+    background:var(--ink); padding:28px 24px;
+  }
+  .skill-card h3{ font-size:1rem; color:var(--gold); margin-bottom:12px; letter-spacing:0.02em; }
+  .skill-card p{ color:var(--parchment-dim); font-size:0.88rem; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-inner{
+    display:grid; grid-template-columns:1.2fr 1fr; gap:60px; align-items:start;
+  }
+  .contact-inner h2{ font-size:clamp(2rem, 4vw, 3rem); margin-bottom:20px; }
+  .contact-inner p{ color:var(--parchment-dim); max-width:480px; margin-bottom:32px; }
+  .contact-list{ list-style:none; }
+  .contact-list li{ padding:16px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; }
+  .contact-list li:last-child{ border-bottom:1px solid var(--line); }
+  .contact-list span:first-child{ color:var(--parchment-dim); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; }
+  .contact-list a:hover{ color:var(--gold); }
+
+  footer{
+    padding:32px 0; border-top:1px solid var(--line);
+    text-align:center; font-size:0.8rem; color:var(--parchment-dim);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .portrait-wrap{ order:-1; width:min(260px, 60vw); margin:0 auto 20px; }
+    .about-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:1fr 1fr; }
+    .work-item{ grid-template-columns: 50px 1fr; }
+    .work-link{ grid-column:2 / 3; justify-self:start; margin-top:6px; }
+    .contact-inner{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 560px){
+    .wrap{ padding:0 20px; }
+    section{ padding:72px 0; }
+    .skills-grid{ grid-template-columns:1fr; }
+    .hero-cta{ flex-direction:column; align-items:flex-start; }
+    .btn{ width:100%; justify-content:center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="#top" class="brand">Vinosan<span>.</span>S.T</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" id="navToggle">
+      <span></span>
+    </button>
+    <nav>
+      <ul id="navList">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none; padding-top:110px;">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">AI &amp; ML Engineering Student</div>
+        <h1>Learning to build <em>intelligent</em><br>systems, one project at a time.</h1>
+        <p class="hero-role">
+          I'm Vinosan S.T, a 3rd-year Computer Science Engineering student
+          specializing in AI &amp; ML. I like turning ideas into working code —
+          from small Python scripts to machine learning models.
+        </p>
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-solid">View my work</a>
+          <a href="#contact" class="btn btn-outline">Get in touch</a>
+        </div>
+      </div>
+
+      <!-- PROFILE PICTURE GOES HERE -->
+      <div class="portrait-wrap">
+        <svg class="portrait-ring" viewBox="0 0 200 200" width="100%" height="100%" aria-hidden="true">
+          <circle cx="100" cy="100" r="96" fill="none" stroke="#D4A24C" stroke-width="1" stroke-dasharray="2 10" stroke-linecap="round"/>
+        </svg>
+        <div class="portrait-frame">
+          <!--
+            ============================================
+            PUT YOUR PROFILE PICTURE HERE:
+            1. Save your photo as: images/profile.jpg
+               (inside the same folder as this index.html)
+            2. Uncomment the <img> tag below
+            3. Delete or comment out the placeholder <div> below it
+            ============================================
+          -->
+          <!-- <img src="images/profile.jpg" alt="Portrait of Vinosan S.T"> -->
+          <div class="placeholder-label">Add your photo at<br><strong>images/profile.jpg</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2>About</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm currently in my 3rd year of Computer Science Engineering, with a
+            specialization in Artificial Intelligence &amp; Machine Learning. I enjoy
+            understanding how things work under the hood — whether that's a
+            neural network, a web page, or a piece of Java code — and then
+            building it myself.
+          </p>
+          <p>
+            I'm actively strengthening my skills in Python and machine learning
+            while picking up front-end basics on the side. I'm always looking
+            for internships, projects, and opportunities to learn from real-world
+            problems.
+          </p>
+        </div>
+        <ul class="facts">
+          <li><span>Location</span><span>Chennai, India</span></li>
+          <li><span>Field</span><span>AI &amp; ML Engineering</span></li>
+          <li><span>Year</span><span>3rd Year, CSE (AI &amp; ML)</span></li>
+          <li><span>Availability</span><span>Open to internships</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2>Projects</h2>
+      </div>
+      <div class="work-list">
+
+        <div class="work-item">
+          <span class="work-index">01</span>
+          <div class="work-body">
+            <h3>Handwritten Digit Recognizer</h3>
+            <p>A machine learning model trained on the MNIST dataset to classify handwritten digits, built to understand the basics of neural networks and model evaluation.</p>
+            <div class="work-tags"><span>Python</span><span>Machine Learning</span><span>Scikit-learn</span></div>
+          </div>
+          <a href="#" class="work-link">View on GitHub →</a>
+        </div>
+
+        <div class="work-item">
+          <span class="work-index">02</span>
+          <div class="work-body">
+            <h3>Student Result Management System</h3>
+            <p>A Java console application to manage student records and calculate grades, focused on practicing OOP concepts and file handling.</p>
+            <div class="work-tags"><span>Java</span><span>OOP</span><span>File Handling</span></div>
+          </div>
+          <a href="#" class="work-link">View on GitHub →</a>
+        </div>
+
+        <div class="work-item">
+          <span class="work-index">03</span>
+          <div class="work-body">
+            <h3>Personal Portfolio Website</h3>
+            <p>A responsive personal portfolio built from scratch to showcase my projects and skills, styled entirely with hand-written HTML and CSS.</p>
+            <div class="work-tags"><span>HTML</span><span>CSS</span><span>Responsive Design</span></div>
+          </div>
+          <a href="#" class="work-link">View on GitHub →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2>Tools &amp; skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Programming</h3>
+          <p>Python, Java, and a growing focus on writing clean, readable code.</p>
+        </div>
+        <div class="skill-card">
+          <h3>Machine Learning</h3>
+          <p>ML fundamentals, NumPy, Pandas, Scikit-learn, and basic model building.</p>
+        </div>
+        <div class="skill-card">
+          <h3>Web Basics</h3>
+          <p>HTML &amp; CSS for building simple, responsive web pages.</p>
+        </div>
+        <div class="skill-card">
+          <h3>Data Structures</h3>
+          <p>Core DSA concepts in Java — arrays, linked lists, trees, and sorting.</p>
+        </div>
+        <div class="skill-card">
+          <h3>Tools</h3>
+          <p>Git &amp; GitHub for version control, VS Code, Jupyter Notebook.</p>
+        </div>
+        <div class="skill-card">
+          <h3>Currently learning</h3>
+          <p>Deep learning fundamentals and SQL for data handling.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap contact-inner">
+      <div>
+        <h2>Let's connect.</h2>
+        <p>I'm looking for internships and collaborative projects in AI/ML and software development. Feel free to reach out — I'd love to talk.</p>
+        <a href="mailto:vinosanst@example.com" class="btn btn-solid">Say hello</a>
+      </div>
+      <ul class="contact-list">
+        <li><span>Email</span><a href="mailto:vinosanst@example.com">vinosanst@example.com</a></li>
+        <li><span>LinkedIn</span><a href="#">/in/vinosanst</a></li>
+        <li><span>GitHub</span><a href="#">/vinosanst</a></li>
+        <li><span>Twitter / X</span><a href="#">@vinosanst</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Vinosan S.T. Built with HTML, CSS &amp; a little bit of care.</div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navList.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navList.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navList.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
